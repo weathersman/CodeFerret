@@ -9,7 +9,7 @@ public class DirFerret extends CodeFerret {
 
 	DirFerret(String path) {
 		this.target = path;
-		if(Utility.isDirectory(path)) {
+		if(isDirectory(path)) {
 			isDir = true;
 			if(! getDirectoryFiles()) {
 				runAway("DirFerret() - Could not get files in directory: " + target);

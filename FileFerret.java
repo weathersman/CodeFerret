@@ -11,7 +11,7 @@ public class FileFerret extends CodeFerret {
 			methods = new ArrayList<>();
 			fileLines = new ArrayList<String>();
 			
-			if(Utility.isFile(path) && path.endsWith(FILE_EXTENSION)) {
+			if(isFile(path) && path.endsWith(FILE_EXTENSION)) {
 				isFile = true; 
 			} else {
 				runAway("FileFerret() - This doesn't look like a file I can explore");

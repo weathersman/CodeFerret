@@ -9,12 +9,12 @@ public class Main {
    			System.exit(1);
 		}
 		
-		if(Utility.isFile(path)) {
+		if(CodeFerret.isFile(path)) {
 			FileFerret fileFerret = new FileFerret(path);
 			fileFerret.exploreFile();
 			fileFerret.analyzeMethods();
 			fileFerret.showMethods();
-		} else if(Utility.isDirectory(path)) {
+		} else if(CodeFerret.isDirectory(path)) {
 			DirFerret dirFerret = new DirFerret(path);
 			dirFerret.exploreDirectory();
 			dirFerret.analyzeDirectoryMethods();
