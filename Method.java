@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -5,12 +6,16 @@ public class Method {
  
   private String signature;
   private String name;
+  private String fileName;
   private List<Method> calls;
+  private ArrayList<String> lines;
  
-  public Method(String signature, String name) {
+  public Method(String signature, String name, String fileName) {
     this.signature = signature;
     this.name = name;
+    this.fileName = fileName;
     this.calls = new LinkedList<>();
+    this.lines = new ArrayList<>();
   }
  
   public void addCall(Method call) {
@@ -36,8 +41,18 @@ public class Method {
    public String getName() {
     return name;
   }
+  
+  public String getFileName() {
+    return fileName;
+  }
  
   public List<Method> getCalls() {
     return calls;
   }
+  
+  public void setLines(ArrayList<String> lines) { this.lines = lines; }
+  
+  public ArrayList<String> getLines() {
+    return lines;
+  }  
 }

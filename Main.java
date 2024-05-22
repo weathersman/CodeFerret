@@ -1,5 +1,3 @@
-import java.nio.file.*;
-import java.util.ArrayList;
 
 public class Main {
 	public static void main(String[] args) {
@@ -11,9 +9,16 @@ public class Main {
    			System.exit(1);
 		}
 		
-		CodeFerret ferret = new CodeFerret(path);
-		if(ferret.canSniff()) {
-			ferret.explore();
+		if(Utility.isFile(path)) {
+			FileFerret fileFerret = new FileFerret(path);
+			fileFerret.exploreFile();
+			fileFerret.analyzeMethods();
+			fileFerret.showMethods();
+		} else if(Utility.isDirectory(path)) {
+			DirFerret dirFerret = new DirFerret(path);
+			dirFerret.exploreDirectory();
+			dirFerret.analyzeDirectoryMethods();
+			dirFerret.showMethods();
 		}
 	}
 }
