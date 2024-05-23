@@ -40,15 +40,15 @@ abstract public class CodeFerret {
 		return false;
 	}		
 	
-	ArrayList<Method> getMethods() { return methods; }
+	protected ArrayList<Method> getMethods() { return methods; }
 	
-	void showMethods() {
+	protected void showMethods() {
 		for(Method method : methods) {
 			System.out.println(method.getName() + " calls " + method.displayCalls());
 		}
 	}
 
-	void analyzeMethod(Method theMethod) {
+	protected void analyzeMethod(Method theMethod) {
 		for(int i = 0; i < theMethod.getLines().size(); i++) {
 			String theLine = theMethod.getLines().get(i);
 			for(Method method : methods) {
@@ -61,7 +61,7 @@ abstract public class CodeFerret {
 		}
 	}
 		
-	void runAway(String msg) {
+	protected void runAway(String msg) {
 		System.out.println(msg);
 		System.exit(1);
 	}

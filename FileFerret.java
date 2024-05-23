@@ -42,6 +42,12 @@ public class FileFerret extends CodeFerret {
 				if(inMethod == false && theLine.contains(method.getSignature())) {
 					openBracketCount++;
 					inMethod = true;
+					
+					// if the function is just one line
+					if(theLine.contains("{") && theLine.contains("}")) {
+						return methodLines;
+					}
+					
 				} else if(inMethod){
 					if(theLine.contains("{")) {
 						openBracketCount++;
