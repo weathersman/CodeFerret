@@ -1,14 +1,12 @@
 import java.io.*;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.regex.*;
 
 public class DirFerret extends CodeFerret {
 	private File[] dirFiles;
 
-	DirFerret(String path) {
+	DirFerret(String path, String startAtMethod) {
 		this.target = path;
+		this.startingMethod = startAtMethod;
 		if(isDirectory(path)) {
 			isDir = true;
 			if(! getDirectoryFiles()) {
@@ -23,7 +21,7 @@ public class DirFerret extends CodeFerret {
 	public void exploreDirectory() {
 		if(isDir && dirFiles.length > 0) {
 			for(int i = 0; i < dirFiles.length; i++) {
-				FileFerret fileFerret = new FileFerret(dirFiles[i].getPath());
+				FileFerret fileFerret = new FileFerret(dirFiles[i].getPath(), null);
 				fileFerret.exploreFile();
 				for(Method m : fileFerret.getMethods()) {
 					m.setLines(fileFerret.parseMethod(m));

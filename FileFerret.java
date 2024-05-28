@@ -6,8 +6,9 @@ public class FileFerret extends CodeFerret {
 		private ArrayList<String> fileLines;
 		private final Pattern methodPattern = Pattern.compile("(?:(?:public|private|protected|static|final|native|synchronized|abstract|transient)+\\s+)+[$_\\w<>\\[\\]\\s]*\\s+[\\$_\\w]+\\([^\\)]*\\)?\\s*\\{?[^\\}]*\\}?",Pattern.CASE_INSENSITIVE);
 		
-		FileFerret(String path) {
+		FileFerret(String path, String startAtMethod) {
 			this.target = path;
+			this.startingMethod = startAtMethod;
 			methods = new ArrayList<>();
 			fileLines = new ArrayList<String>();
 			
@@ -31,7 +32,7 @@ public class FileFerret extends CodeFerret {
 			}
 		}
 				
-		ArrayList<String> parseMethod(Method method) {
+		public ArrayList<String> parseMethod(Method method) {
 			ArrayList<String> methodLines = new ArrayList<>();
 			boolean inMethod = false;
 			int openBracketCount = 0;

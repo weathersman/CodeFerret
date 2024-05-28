@@ -5,6 +5,7 @@ import java.util.ArrayList;
 abstract public class CodeFerret {
 	final String FILE_EXTENSION = ".java";
 	String target;
+	String startingMethod;
 	boolean isFile = false;
 	boolean isDir = false;
 	ArrayList<Method> methods;
@@ -43,8 +44,23 @@ abstract public class CodeFerret {
 	protected ArrayList<Method> getMethods() { return methods; }
 	
 	protected void showMethods() {
-		for(Method method : methods) {
-			System.out.println(method.getName() + " calls " + method.displayCalls());
+		if(startingMethod != null && !startingMethod.isEmpty()) {
+			Method start = null;
+			for(Method method : methods) {
+				if (method.getName().equalsIgnoreCase(startingMethod)) {
+					start = method;
+					break;
+				}
+			}
+			if(start != null) {
+				MethodGraph graph = new MethodGraph(start);
+				graph.addNode(start, null);
+				graph.display();
+			}
+		} else {
+			for (Method method : methods) {
+				System.out.println(method.getName() + " calls " + method.displayCalls());
+			}
 		}
 	}
 
